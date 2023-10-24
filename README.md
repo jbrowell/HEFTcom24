@@ -15,14 +15,14 @@ to install all packages and dependencies, and activate the `comp23` environment.
 
 Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should placed in the `data` folder.
 
-More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionailty early and automate submissions. 
+More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions. 
 
 
 ## Utilities module
 
 The python module `comp_utils.py` contains some useful functions for the competition, including
 
-1. Set-up of authrntication to access the competition API
+1. Set-up of authentication to access the competition API
 2. Wrappers for the API endpoints to download the latest data
 
 ## Getting Started Example
@@ -40,11 +40,13 @@ data/Energy_Data.csv
 
 An API key will be sent to the email address used when registering for the competition. This key is linked to your team, and it is essential that you use it when submitting your entires. Do not share your API key!
 
-Your API key should be stored in a text file called `team_key.txt` in the root directory of this repository. This file is listed in `.gitignore` and is therefore igonred by git. If you change the filename, make sure you add the new name to `.gitignore`.
+Your API key should be stored in a text file called `team_key.txt` in the root directory of this repository. This file is listed in `.gitignore` and is therefore ignored by git. If you change the filename, make sure you add the new name to `.gitignore`.
 
 ## Automating Submissions
 
-The python script `auto_submitter.py` downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same appraoch as in `Getting Started.ipynb`. It can be run from the command line  
+During the competition period, daily submissions are required. Forecasts and market bids for the day-ahead must be submitted before gate closure of the day-ahead auction at 9:20AM UTC. Hence, automation is encouraged.
+
+The python script `auto_submitter.py` downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same approach as in `Getting Started.ipynb`. It can be run from the command line  
 ```
 [...]\Getting Started> "C:\Users\[user name]\Anaconda3\envs\comp23\python.exe" auto_submitter.py
 ```
@@ -60,4 +62,4 @@ Create a batch file `scheduled_task.bat` containing the following text (similar 
 "[...]\Getting Started\auto_submitter.py"
 pause
 ```
-Naviage to thorugh Control Panel to the Task Scheduler and schedule this batch file to be run each day in time to make your submission before the 10:20am (UK time) deadline.
+Navigate to thorough Control Panel to the Task Scheduler and schedule this batch file to be run each day in time to make your submission before the 10:20am (UK time) deadline.
