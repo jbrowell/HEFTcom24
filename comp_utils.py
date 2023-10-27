@@ -80,7 +80,6 @@ class RebaseAPI:
     return resp.json()
 
 
-
   def query_weather_latest(self,model, lats, lons, variables, query_type):
     url = "https://dev-api.rebase.energy/weather/v2/query"
 
@@ -115,15 +114,12 @@ class RebaseAPI:
     return df
 
 
-
   def query_weather_latest_grid(self,model, lats, lons, variables):
     # Data here is returned as a flattened
     data = self.query_weather_latest(model, lats, lons, variables, 'grid')
     df = pd.DataFrame(data)
 
     return df
-
-
 
 
   # To query Hornsea project 1 DWD_ICON-EU grid
@@ -155,8 +151,6 @@ class RebaseAPI:
     return self.query_weather_latest_points(model, lats, lons, variables)
 
 
-
-
   def get_demand_nwp(self,model):
     # As list of points
     lats = [51.479, 51.453, 52.449, 53.175, 55.86, 53.875, 54.297]
@@ -164,7 +158,8 @@ class RebaseAPI:
 
     variables = 'Temperature, WindSpeed, WindDirection, TotalPrecipitation, RelativeHumidity'
     return self.query_weather_latest_points(model, lats, lons, variables)
-  
+
+
   def submit(self,data,market_day=pd.to_datetime('today') + pd.Timedelta(1,unit="day")):
 
     url = f"{self.base_url}/challenges/{self.challenge_id}/submit"
