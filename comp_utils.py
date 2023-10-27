@@ -2,10 +2,11 @@ from requests import Session
 import requests
 import pandas as pd
 import datetime
+import warnings
 
 class RebaseAPI:
   
-  challenge_id = 'test_competition'
+  challenge_id = 'heftcom2024'
   base_url = 'https://api.rebase.energy'
 
   def __init__(self,
@@ -163,17 +164,13 @@ class RebaseAPI:
 
     url = f"{self.base_url}/challenges/{self.challenge_id}/submit"
 
-
     # You can only submit a prediction for the day-ahead before 09:20 UTC today
     params = {
         'market_day': market_day.strftime('%Y-%m-%d')
 
     }
 
-    headers = {
-        'Authorization': f"Bearer {self.api_key}"
-    }
-    resp = self.session.post(url, params=params, headers=headers, json=data)
+    resp = self.session.post(url, params=params, headers=self.headers, json=data)
 
     print(resp)
 
@@ -238,7 +235,14 @@ def day_ahead_market_times(today_date=pd.to_datetime('today')):
 def prep_submission_in_json_format(submission_data):
   submission = []
 
-  # Example of a submission
+  if any(submission_data["market_bid"]<0):
+    submission_data.loc[submission_data["market_bid"]<0,"market_bid"] = 0
+    warnings.warn("Warning...Some market bids were less than 0 and have been set to 0")
+
+  if any(submission_data["market_bid"]>1800):
+    submission_data.loc[submission_data["market_bid"]<1800,"market_bid"] = 1800
+    warnings.warn("Warning...Some market bids were greater than 1800 and have been set to 1800")
+
   for i in range(len(submission_data.index)):
       submission.append({
           'timestamp': submission_data["datetime"][i].isoformat(),
