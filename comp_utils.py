@@ -45,7 +45,6 @@ class RebaseAPI:
     return df
 
 
-
   # Solar production Sheffield Solar PES region 1
   def get_solar_production(self):
     url = f"{self.base_url}/challenges/data/solar_total_production"
@@ -165,7 +164,7 @@ class RebaseAPI:
     url = f"{self.base_url}/challenges/{self.challenge_id}/submit"
 
 
-    # You can only submit a prediction for next day, before 10:20 UK time today
+    # You can only submit a prediction for the day-ahead before 09:20 UTC today
     params = {
         'market_day': market_day.strftime('%Y-%m-%d')
 
