@@ -81,7 +81,7 @@ class RebaseAPI:
 
 
   def query_weather_latest(self,model, lats, lons, variables, query_type):
-    url = "https://dev-api.rebase.energy/weather/v2/query"
+    url = f"{self.base_url}/weather/v2/query"
 
     body = {
         'model': model,
