@@ -18,7 +18,7 @@ latest_forcast_table.rename(columns={"WindSpeed:100":"WindSpeed"},inplace=True)
 
 # Produce quantile forecasts
 for quantile in range(10,100,10):
-    loaded_model = load_pickle(f"data/model_q{quantile}.pickle")
+    loaded_model = load_pickle(f"models/model_q{quantile}.pickle")
     latest_forcast_table[f"q{quantile}"] = loaded_model.predict(latest_forcast_table)
 
 # Make submission
