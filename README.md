@@ -17,7 +17,7 @@ Historic data for use in the competition can be downloaded from the competition 
 
 More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions.
 
-API documentation can be found on the [rebase.energy website](https://dev-api.rebase.energy/challenges/redoc#tag/Data), and some basic wrappers are included in `comp_utils.py`.
+API documentation can be found on the [rebase.energy website](https://api.rebase.energy/challenges/redoc#tag/Data), and some basic wrappers are included in `comp_utils.py`.
 
 
 ## Utilities module
@@ -47,7 +47,7 @@ Your API key should be stored in a text file called `team_key.txt` in the root d
 
 ## Submissions
 
-During the competition period, daily submissions are required. Forecasts and market bids for the day-ahead must be submitted before gate closure of the day-ahead auction at 9:20AM UTC. Hence, automation is encouraged. Submission is via push API, documentation of which is available on the [rebase.energy website](https://dev-api.rebase.energy/challenges/redoc#tag/Challenge/operation/post_submission_challenges__challenge_id__submit_post).
+During the competition period, daily submissions are required. Forecasts and market bids for the day-ahead must be submitted before gate closure of the day-ahead auction at 9:20AM UTC. Hence, automation is encouraged. Submission is via push API, documentation of which is available on the [rebase.energy website](https://api.rebase.energy/challenges/redoc#tag/Challenge/operation/post_submission_challenges__challenge_id__submit_post).
 
 The python script `auto_submitter.py` provides an example of one way of setting this up. The script downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same approach as in `Getting Started.ipynb`. It can be run from the command line  
 ```
