@@ -11,11 +11,13 @@ conda activate comp23
 ```
 to install all packages and dependencies, and activate the `comp23` environment.
 
-## Dowload data
+## Download data
 
 Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should placed in the `data` folder.
 
-More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions. 
+More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions.
+
+API documentation can be found on the [rebase.energy website](https://api.rebase.energy/challenges/redoc#tag/Data), and some basic wrappers are included in `comp_utils.py`.
 
 
 ## Utilities module
@@ -24,6 +26,7 @@ The python module `comp_utils.py` contains some useful functions for the competi
 
 1. Set-up of authentication to access the competition API
 2. Wrappers for the API endpoints to download the latest data
+3. Functions to prepare and send submissions 
 
 ## Getting Started Example
 
@@ -42,11 +45,11 @@ An API key will be sent to the email address used when registering for the compe
 
 Your API key should be stored in a text file called `team_key.txt` in the root directory of this repository. This file is listed in `.gitignore` and is therefore ignored by git. If you change the filename, make sure you add the new name to `.gitignore`.
 
-## Automating Submissions
+## Submissions
 
-During the competition period, daily submissions are required. Forecasts and market bids for the day-ahead must be submitted before gate closure of the day-ahead auction at 9:20AM UTC. Hence, automation is encouraged.
+During the competition period, daily submissions are required. Forecasts and market bids for the day-ahead must be submitted before gate closure of the day-ahead auction at 9:20AM UTC. Hence, automation is encouraged. Submission is via push API, documentation of which is available on the [rebase.energy website](https://api.rebase.energy/challenges/redoc#tag/Challenge/operation/post_submission_challenges__challenge_id__submit_post).
 
-The python script `auto_submitter.py` downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same approach as in `Getting Started.ipynb`. It can be run from the command line  
+The python script `auto_submitter.py` provides an example of one way of setting this up. The script downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same approach as in `Getting Started.ipynb`. It can be run from the command line  
 ```
 [...]\Getting Started> "C:\Users\[user name]\Anaconda3\envs\comp23\python.exe" auto_submitter.py
 ```
@@ -62,4 +65,4 @@ Create a batch file `scheduled_task.bat` containing the following text (similar 
 "[...]\Getting Started\auto_submitter.py"
 pause
 ```
-Navigate to thorough Control Panel to the Task Scheduler and schedule this batch file to be run each day in time to make your submission before the 10:20am (UK time) deadline.
+Navigate to thorough Control Panel to the Task Scheduler and schedule this batch file to be run each day in time to make your submission before the 9:20AM UTC deadline.
