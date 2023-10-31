@@ -13,7 +13,7 @@ to install all packages and dependencies, and activate the `HEFTcom24` environme
 
 ## Download data
 
-Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should placed in the `data` folder.
+Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should un-zipped and placed in the `data` folder.
 
 More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions.
 
@@ -34,16 +34,18 @@ An minimal example showing how to load and combine data, produce a forecasting m
 
 This example only uses a subset of data provided by the competition organisers. The following files are required:
 ```
-data/dwd_icon_eu_hornsea_1_20200920_20230920.nc
-data/dwd_icon_eu_pes10_20200920_20230920.nc
-data/Energy_Data.csv
+data/dwd_icon_eu_hornsea_1_20200920_20231027.nc
+data/dwd_icon_eu_pes10_20200920_20231027.nc
+data/Energy_Data_20200920_20230820.csv
 ```
+
+API access is not required to get started on developing your forecasting and trading strategies using the historic data provided.
 
 ### Setting up your authentication
 
-An API key will be sent to the email address used when registering for the competition. This key is linked to your team, and it is essential that you use it when submitting your entires. Do not share your API key!
+An API key will be sent to the email address used when registering for the competition on or before 14 November 2023, or withing one working day if you registered after this date. This key is linked to your team, and it is essential that you use it when submitting your entires. Do not share your API key!
 
-Your API key should be stored in a text file called `team_key.txt` in the root directory of this repository. This file is listed in `.gitignore` and is therefore ignored by git. If you change the filename, make sure you add the new name to `.gitignore`.
+To run this example, your API key should be stored in a text file called `team_key.txt` in the root directory of this repository. This file is listed in `.gitignore` and is therefore ignored by git. If you change the filename, make sure you add the new name to `.gitignore`.
 
 ## Submissions
 
@@ -51,7 +53,7 @@ During the competition period, daily submissions are required. Forecasts and mar
 
 The python script `auto_submitter.py` provides an example of one way of setting this up. The script downloads new data, loads and runs models, and submits the resulting forecasts and market bid to the competition platform using the same approach as in `Getting Started.ipynb`. It can be run from the command line  
 ```
-[...]\Getting Started> "C:\Users\[user name]\Anaconda3\envs\comp23\python.exe" auto_submitter.py
+[...]\Getting Started> "C:\Users\[user name]\Anaconda3\envs\HEFTcom24\python.exe" auto_submitter.py
 ```
 and will save a text file in the `logs/` directory containing the API response.
 
