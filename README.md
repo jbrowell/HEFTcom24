@@ -17,7 +17,7 @@ Historic data for use in the competition can be downloaded from the competition 
 
 More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions.
 
-API documentation can be found on the [rebase.energy website](https://api.rebase.energy/challenges/redoc#tag/Data), and some basic wrappers are included in `comp_utils.py`.
+API documentation can be found on the rebase.energy website for [energy data](https://api.rebase.energy/challenges/redoc#tag/Data) and [weather data](https://api.rebase.energy/weather/docs/v2/), and some basic wrappers are included in `comp_utils.py`.
 
 
 ## Utilities module
