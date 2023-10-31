@@ -13,7 +13,7 @@ to install all packages and dependencies, and activate the `comp23` environment.
 
 ## Download data
 
-Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should placed in the `data` folder.
+Historic data for use in the competition can be downloaded from the competition [IEEE DataPort page](https://dx.doi.org/10.21227/5hn0-8091) and should un-zipped and placed in the `data` folder.
 
 More recent data can be downloaded via the competition API, which will be necessary to generate forecasts during the evaluation phase of the competition. Teams are advised to test this functionality early and automate submissions.
 
