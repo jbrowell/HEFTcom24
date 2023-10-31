@@ -7,9 +7,9 @@ This repository contains some basic utilities and an example to help teams get s
 This example was developed using anaconda. You can use the file `environment.yml` create an environment with the same packages and version of Python. In anaconda prompt, run
 ```
 conda env create -f environment.yml
-conda activate comp23
+conda activate HEFTcom24
 ```
-to install all packages and dependencies, and activate the `comp23` environment.
+to install all packages and dependencies, and activate the `HEFTcom24` environment.
 
 ## Download data
 
