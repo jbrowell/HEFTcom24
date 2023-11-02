@@ -160,23 +160,16 @@ class RebaseAPI:
     return self.query_weather_latest_points(model, lats, lons, variables)
 
 
-  def submit(self,data,market_day=pd.to_datetime('today') + pd.Timedelta(1,unit="day")):
+  def submit(self,data):
 
     url = f"{self.base_url}/challenges/{self.challenge_id}/submit"
 
-    # You can only submit a prediction for the day-ahead before 09:20 UTC today
-    params = {
-        'market_day': market_day.strftime('%Y-%m-%d')
-
-    }
-
-    resp = self.session.post(url, params=params, headers=self.headers, json=data)
-
+    resp = self.session.post(url,headers=self.headers, json=data)
+    
     print(resp)
-
     print(resp.text)
 
-    # Open text file in write mode
+    # Write log file
     text_file = open(f"logs/sub_{pd.Timestamp('today').strftime('%Y%m%d-%H%M%S')}.txt", "w")
     text_file.write(resp.text)
     text_file.close()
@@ -217,7 +210,6 @@ def weather_df_to_xr(weather_data):
   return weather_data
 
 
-
 def day_ahead_market_times(today_date=pd.to_datetime('today')):
 
   tomorrow_date = today_date + pd.Timedelta(1,unit="day")
@@ -232,7 +224,7 @@ def day_ahead_market_times(today_date=pd.to_datetime('today')):
   return DA_Market
 
 
-def prep_submission_in_json_format(submission_data):
+def prep_submission_in_json_format(submission_data,market_day=pd.to_datetime('today') + pd.Timedelta(1,unit="day")):
   submission = []
 
   if any(submission_data["market_bid"]<0):
@@ -240,7 +232,7 @@ def prep_submission_in_json_format(submission_data):
     warnings.warn("Warning...Some market bids were less than 0 and have been set to 0")
 
   if any(submission_data["market_bid"]>1800):
-    submission_data.loc[submission_data["market_bid"]<1800,"market_bid"] = 1800
+    submission_data.loc[submission_data["market_bid"]>1800,"market_bid"] = 1800
     warnings.warn("Warning...Some market bids were greater than 1800 and have been set to 1800")
 
   for i in range(len(submission_data.index)):
@@ -260,8 +252,8 @@ def prep_submission_in_json_format(submission_data):
           }
       })
 
-
   data = {
+      'market_day': market_day.strftime("%Y-%m-%d"),
       'submission': submission
   }
   
