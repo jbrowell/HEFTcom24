@@ -68,3 +68,11 @@ Create a batch file `scheduled_task.bat` containing the following text (similar 
 pause
 ```
 Navigate to thorough Control Panel to the Task Scheduler and schedule this batch file to be run each day in time to make your submission before the 9:20AM UTC deadline.
+
+## Contributors to this repository
+
+- Jethro Browell (University of Glasgow)
+- Henrik Kälvegren (rebase.energy)
+- Klimis Stylpnopoulos (University of Glasgow)
+
+Contact: [Rebase Slack Community](join.slack.com/t/rebase-community/shared_invite/zt-1dtd0tdo6-sXuCEy~zPnvJw4uUe~tKeA)
