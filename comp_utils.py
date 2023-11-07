@@ -47,11 +47,15 @@ class RebaseAPI:
 
 
   # Solar production Sheffield Solar PES region 1
-  def get_solar_production(self):
+  def get_solar_production(self,from_date,to_date):
     url = f"{self.base_url}/challenges/data/solar_total_production"
-    params = {'from_date': '2023-09-15', 'to_date': '2023-09-18'}
+    params = {'from_date': from_date, 'to_date': to_date}
     resp = self.session.get(url, params=params)
-    return resp.json()
+
+    data = resp.json()
+    df = pd.DataFrame(data)
+
+    return df
 
 
   # Solar and wind forecast
@@ -74,7 +78,7 @@ class RebaseAPI:
 
   # Margin forecast
   def get_margin_forecast(self):
-    url = f"{self,base_url}/challenges/data/margin_forecast"
+    url = f"{self.base_url}/challenges/data/margin_forecast"
     resp = self.session.get(url)
     print(resp)
     return resp.json()
