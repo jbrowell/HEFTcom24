@@ -46,10 +46,10 @@ class RebaseAPI:
     return df
 
 
-  # Solar production Sheffield Solar PES region 1
-  def get_solar_production(self,from_date,to_date):
+  # Solar production Sheffield Solar PES region 10
+  def get_solar_production(self,day):
     url = f"{self.base_url}/challenges/data/solar_total_production"
-    params = {'from_date': from_date, 'to_date': to_date}
+    params = {'day': day}
     resp = self.session.get(url, params=params)
 
     data = resp.json()
