@@ -9,49 +9,36 @@ class RebaseAPI:
   challenge_id = 'heftcom2024'
   base_url = 'https://api.rebase.energy'
 
-  def __init__(self,
-               api_key = open("team_key.txt").read()):
-     self.api_key = api_key #@param {type: "string"}
-     self.headers = {
-        'Authorization': f"Bearer {api_key}"
-        }
-     self.session = Session()
-     self.session.headers = self.headers
-
-  # Spot price
-  def get_spot_price(self,day):
-    url = f"{self.base_url}/challenges/data/spot_price"
-    params = {'day': day}
-    resp = self.session.get(url, params=params)
-    return resp.json()
+  def __init__(
+    self,
+    api_key = open("team_key.txt").read()
+    ):
+    self.api_key = api_key
+    self.headers = {
+      'Authorization': f"Bearer {api_key}"
+      }
+    self.session = Session()
+    self.session.headers = self.headers
 
 
-
-  # Imbalance price
-  def get_imbalance_price(self,day):
-    url = f"{self.base_url}/challenges/data/imbalance_price"
-    params = {'day': day}
-    resp = self.session.get(url, params=params)
-    return resp.json()
-
-
-  # Wind production Hornsea Project 1
-  def get_wind_production(self,day):
-    url = f"{self.base_url}/challenges/data/wind_total_production"
+  def get_variable(
+      self,
+      day: str,
+      variable: ["market_index",
+                 "day_ahead_price",
+                 "imbalance_price",
+                 "wind_total_production",
+                 "solar_total_production",
+                 "solar_and_wind_forecast"
+                 ],
+                 ):
+    url = f"{self.base_url}/challenges/data/{variable}"
     params = {'day': day}
     resp = self.session.get(url, params=params)
 
     data = resp.json()
     df = pd.DataFrame(data)
     return df
-
-
-  # Solar production Sheffield Solar PES region 1
-  def get_solar_production(self):
-    url = f"{self.base_url}/challenges/data/solar_total_production"
-    params = {'from_date': '2023-09-15', 'to_date': '2023-09-18'}
-    resp = self.session.get(url, params=params)
-    return resp.json()
 
 
   # Solar and wind forecast
@@ -74,7 +61,7 @@ class RebaseAPI:
 
   # Margin forecast
   def get_margin_forecast(self):
-    url = f"{self,base_url}/challenges/data/margin_forecast"
+    url = f"{self.base_url}/challenges/data/margin_forecast"
     resp = self.session.get(url)
     print(resp)
     return resp.json()
