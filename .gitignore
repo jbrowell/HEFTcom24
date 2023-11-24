@@ -13,3 +13,4 @@ __pycache__
 ### ROOT Folders ##
 data/
 logs/
+notebooks/
