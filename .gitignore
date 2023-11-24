@@ -1,2 +1,13 @@
 __pycache__
-/team_key.txt
+.env
+*.txt
+
+### FILE TYPES
+*.ipynb
+
+
+
+
+### ROOT Folders ##
+data/
+logs/
