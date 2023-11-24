@@ -1,2 +1,5 @@
 __pycache__
 /team_key.txt
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb
