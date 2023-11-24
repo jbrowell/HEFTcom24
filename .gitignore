@@ -5,6 +5,7 @@ __pycache__
 ### FILE TYPES
 *.ipynb
 *.ipynb_checkpoints/
+*.DS_Store
 
 
 

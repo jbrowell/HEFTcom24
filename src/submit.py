@@ -7,18 +7,18 @@ from dotenv import load_dotenv
 from statsmodels.iolib.smpickle import load_pickle
 
 import utils
-from loaders import get_day_ahead_market_times, get_hornsea_data, get_solar_data
+from loaders import get_hornsea_data, get_next_day_market_times, get_solar_data
 from rebase_api import RebaseAPI
 
 if __name__ == "__main__":
     # INIT API KEY
     load_dotenv()
     api_key = os.getenv("api_key")
-    rebase = RebaseAPI(api_key)
+    rebase_client = RebaseAPI(api_key)
 
     # LOAD DATA
-    solar = get_solar_data(rebase)
-    hornsea = get_hornsea_data(rebase)
+    solar = get_solar_data(rebase_client)
+    hornsea = get_hornsea_data(rebase_client)
 
     current_forecasts = utils.format_forecast_table(hornsea, solar)
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         current_forecasts[f"q{quantile}"] = model.predict(current_forecasts)
 
     # SUBMITTING
-    submission_data = pd.DataFrame({"datetime": get_day_ahead_market_times()})
+    submission_data = pd.DataFrame({"datetime": get_next_day_market_times()})
     submission_data = submission_data.merge(
         current_forecasts, how="left", left_on="datetime", right_on="valid_datetime"
     )
@@ -38,4 +38,4 @@ if __name__ == "__main__":
 
     submission_data = utils.prep_submission_in_json_format(submission_data)
 
-    rebase.submit(submission_data)
+    rebase_client.submit(submission_data)
