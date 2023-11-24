@@ -134,4 +134,3 @@ dependencies:
   - zeromq=4.3.4
   - zlib=1.2.13
   - zstd=1.5.5
-prefix: C:\Users\jb593c\Anaconda3\envs\HEFTcom24
