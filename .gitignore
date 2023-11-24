@@ -1,5 +1,14 @@
 __pycache__
-/team_key.txt
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
+.env
+*.txt
+
+### FILE TYPES
 *.ipynb
+*.ipynb_checkpoints/
+
+
+
+
+### ROOT Folders ##
+data/
+logs/
