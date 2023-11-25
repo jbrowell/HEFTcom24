@@ -1,6 +1,7 @@
-# Hybrid Energy Forecasting and Trading Competition
+![image](https://github.com/jeremy-wayland/HEFTcom24/assets/47305172/06f454bc-9ab4-4023-b365-017b98391973)
 
 
+## IEEE HYBRID ENERGY FORECASTING AND TRADING COMPETITION
 Forecasting production from wind and solar power plants, and making effective decisions under forecast uncertainty, are essential capabilities in low-carbon energy systems. This competition invites participants to develop state-of-the-art forecasting and energy trading techniques to accelerate the global transition to net-zero and to win a share of $21,000 in prize money. It aims to bridge the gap between academic and industry practice, introduce energy forecasting challenges to new communities, and promote energy analytics and data science education.
 
 The competition is organised by the IEEE Power and Energy Society Working Group on Energy Forecasting and Analytics and is sponsored by Ørsted, one of the world’s largest renewable energy companies, and rebase.energy, and tech start-up based in Sweden. Forecasting power production and participating in energy markets is a core part of Ørsted’s business, and an area where data and decisions science can bring great value. The competition platform developed by rebase.energy gives participants access to a wide variety of data, including weather forecasts and real electricity market data, to generate their forecasts and trading decisions.
