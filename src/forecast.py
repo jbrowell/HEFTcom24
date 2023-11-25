@@ -1,6 +1,7 @@
+import argparse
 import os
+import sys
 
-import numpy as np
 import pandas as pd
 import xarray as xr
 from dotenv import load_dotenv
@@ -11,6 +12,15 @@ from loaders import get_hornsea_data, get_next_day_market_times, get_solar_data
 from rebase_api import RebaseAPI
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--submit",
+        type=bool,
+        default=False,
+        help="If True, submit a forecast for competition.",
+    )
+    args = parser.parse_args()
+    this = sys.modules[__name__]
     # INIT API KEY
     load_dotenv()
     api_key = os.getenv("api_key")
@@ -29,7 +39,7 @@ if __name__ == "__main__":
         model = load_pickle(f"models/model_q{quantile}.pickle")
         current_forecasts[f"q{quantile}"] = model.predict(current_forecasts)
 
-    # SUBMITTING
+    # PREPARE SUBMISSION
     submission_data = pd.DataFrame({"datetime": get_next_day_market_times()})
     submission_data = submission_data.merge(
         current_forecasts, how="left", left_on="datetime", right_on="valid_datetime"
@@ -37,5 +47,8 @@ if __name__ == "__main__":
     submission_data["market_bid"] = submission_data["q50"]
 
     submission_data = utils.prep_submission_in_json_format(submission_data)
+    print(submission_data)
 
-    rebase_client.submit(submission_data)
+    # EXCECUTE SUBMIT
+    if args.submit:
+        rebase_client.submit(submission_data)

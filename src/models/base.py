@@ -4,15 +4,14 @@ from pandas import DataFrame
 
 
 class BaseForecaster:
-    def __init__(self, config):
-        super(BaseForecaster, self).__init__()
+    def __init__(self, config, inputs: DataFrame):
         self.config = config
+        self.inputs = inputs
 
     @abstractmethod
-    def fit(self, *inputs: DataFrame) -> DataFrame:
-        # Quantiles in cofig
+    def fit(self, quantile) -> DataFrame:
         pass
 
     @abstractmethod
-    def predict(self, *inputs: DataFrame) -> DataFrame:
+    def predict(self, data: DataFrame) -> DataFrame:
         pass
