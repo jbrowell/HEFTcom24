@@ -8,20 +8,20 @@ from models import BaseForecaster
 class QuantRegModel(BaseForecaster):
     def __init__(self, config, inputs) -> None:
         super(QuantRegModel, self).__init__(config, inputs)
-        self.model = smf.quantreg(
+        self.M = smf.quantreg(
             formula=self.config.formula,
             data=inputs,
         )
         self.max_iter = self.config.max_iter
 
     def fit(self, quantile) -> DataFrame:
-        return self.model.fit(
+        return self.M.fit(
             q=quantile / 100,
             max_iter=self.max_iter,
         )
 
     def predict(self, data: DataFrame) -> DataFrame:
-        return self.model.predict(data)
+        return self.M.predict(data)
 
 
 def initialize():

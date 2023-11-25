@@ -1,6 +1,7 @@
 "Testing Model Configurations based on `Getting Started` notebook"
 import os
 
+import statsmodels.formula.api as smf
 from dotenv import load_dotenv
 from omegaconf import OmegaConf
 
@@ -18,11 +19,11 @@ if __name__ == "__main__":
     model = load_module("model", config, inputs)
     forecast_models = dict()
 
-    print(inputs.shape)
-
     for q in range(10, 100, 10):
         print(f"Starting Predictions for q{q}")
-        forecast_models[f"q{q}"] = model.fit(quantile=q)
 
-        inputs[f"q{q}"] = model.predict(inputs)
+        forecast_models[f"q{q}"] = model.fit(quantile=q / 100)
+        inputs[f"q{q}"] = forecast_models[f"q{q}"].predict(inputs)
         inputs.loc[inputs[f"q{q}"] < 0, f"q{q}"] = 0
+
+    print(forecast_models)
