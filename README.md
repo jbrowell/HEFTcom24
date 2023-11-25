@@ -1,6 +1,5 @@
 # Hybrid Energy Forecasting and Trading Competition
 
-![Competition Logo]([link_to_logo_image](https://ieee-dataport.org/sites/default/files/styles/large/public/DataPort%2043_0.png?itok=_0g_F41e))
 
 Forecasting production from wind and solar power plants, and making effective decisions under forecast uncertainty, are essential capabilities in low-carbon energy systems. This competition invites participants to develop state-of-the-art forecasting and energy trading techniques to accelerate the global transition to net-zero and to win a share of $21,000 in prize money. It aims to bridge the gap between academic and industry practice, introduce energy forecasting challenges to new communities, and promote energy analytics and data science education.
 
