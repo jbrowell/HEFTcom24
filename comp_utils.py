@@ -92,7 +92,7 @@ class RebaseAPI:
 
     df = pd.DataFrame()
     for point in range(len(data)):
-      new_df = pd.DataFrame(data[0])
+      new_df = pd.DataFrame(data[point])
       new_df["point"] = point
       new_df["latitude"] = lats[point]
       new_df["longitude"] = lons[point]
